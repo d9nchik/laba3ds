@@ -51,21 +51,37 @@ data = get_data()
 
 adjacency_matrix = create_adjacency_matrix(data)
 
-choice = input("Натисніть 1 для алгоритму пошуку вшир, 2 в глиб: ")
-startPoint = int(input("Введіть з якої вершини почати обхід вшир: "))
+choice = int(input("Натисніть 1 для алгоритму пошуку вшир, 2 в глиб: "))
+startPoint = int(input("Введіть з якої вершини почати обхід : "))
 queue = [startPoint - 1]
 close_height(adjacency_matrix, queue[0])
 counter = 1
-print("Вершина |BFS\t|Вміст черги")
-show_action(queue, counter)
+if choice == 1:
+    print("Вершина |BFS\t|Вміст черги")
+    show_action(queue, counter)
 
-while len(queue) != 0:
-    position = get_position_of_neighbour(adjacency_matrix, queue[0])
-    if position == -1:
-        queue.remove(queue[0])
-        show_action(queue)
-    else:
-        queue.append(position)
-        close_height(adjacency_matrix, position)
-        counter += 1
-        show_action(queue, counter)
+    while len(queue) != 0:
+        position = get_position_of_neighbour(adjacency_matrix, queue[0])
+        if position == -1:
+            queue.remove(queue[0])
+            show_action(queue)
+        else:
+            queue.append(position)
+            close_height(adjacency_matrix, position)
+            counter += 1
+            show_action(queue, counter)
+elif choice == 2:
+    print("Вершина |DFS\t|Вміст черги")
+    show_action(queue, counter)
+    while len(queue) != 0:
+        position = get_position_of_neighbour(adjacency_matrix, queue[-1])
+        if position == -1:
+            queue.remove(queue[-1])
+            show_action(queue)
+        else:
+            queue.append(position)
+            close_height(adjacency_matrix, position)
+            counter += 1
+            show_action(queue, counter)
+else:
+    print("Enter is incorrect!")
