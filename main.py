@@ -58,6 +58,7 @@ close_height(adjacency_matrix, queue[0])
 counter = 1
 if choice == 1:
     print("Вершина |BFS\t|Вміст черги")
+    print("----------------------------")
     show_action(queue, counter)
 
     while len(queue) != 0:
@@ -72,6 +73,7 @@ if choice == 1:
             show_action(queue, counter)
 elif choice == 2:
     print("Вершина |DFS\t|Вміст черги")
+    print("----------------------------")
     show_action(queue, counter)
     while len(queue) != 0:
         position = get_position_of_neighbour(adjacency_matrix, queue[-1])
